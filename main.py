@@ -1,7 +1,7 @@
 """
-Module principal du bot Telegram pour le trading sur Binance Futures.
+Main module for the Telegram bot for trading on Binance Futures.
 
-Ce module intègre tous les composants du bot et gère son exécution.
+This module integrates all components of the bot and manages its execution.
 """
 
 import asyncio
@@ -11,57 +11,50 @@ import os
 import sys
 from queue import Queue
 
+# Import the enhanced logging setup
+from debug_logger import setup_enhanced_logging
+
+# Set up enhanced logging
+logger = setup_enhanced_logging()
+
+# Import components after setting up logging
 from src.signal_parser import SignalParser
 from src.telegram_client import TelegramClient, SignalProcessor
 from src.binance_client import BinanceClient
 from src.trade_executor import TradeExecutor
 from src.risk_manager import RiskManager
 
-# Configuration du logging
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO,
-    filename='telegram_binance_bot.log'
-)
-logger = logging.getLogger(__name__)
-
-# Ajouter un handler pour afficher les logs dans la console
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-
 
 async def main():
-    """Fonction principale pour exécuter le bot Telegram."""
+    """Main function to run the Telegram bot."""
     try:
-        # Charger la configuration
+        logger.info("Starting Telegram trading bot")
+        
+        # Load configuration
         config_path = os.path.join(os.path.dirname(__file__), 'config.json')
         with open(config_path, 'r') as f:
             config = json.load(f)
             # Set logging level based on debug mode
-            # Set logging level based on debug mode
             if config.get("debug", False):
                 logger.setLevel(logging.DEBUG)
-                console_handler.setLevel(logging.DEBUG)
                 logger.debug("Debug mode enabled")
         
-        logger.info("Configuration chargée")
+        logger.info("Configuration loaded")
         
-        # Initialiser les composants
+        # Initialize components
         signal_queue = Queue()
         
-        # Initialiser le client Binance
+        # Initialize Binance client
+        logger.info("Initializing Binance client with API key: " + config['binance']['api_key'][:5] + "...")
         binance_client = BinanceClient(
             api_key=config['binance']['api_key'],
             api_secret=config['binance']['api_secret'],
             testnet=config['binance']['testnet']
         )
         
-        logger.info("Client Binance initialisé")
+        logger.info("Binance client initialized")
         
-        # Initialiser le gestionnaire de risque
+        # Initialize risk manager
         risk_manager = RiskManager(
             binance_client=binance_client,
             risk_per_trade=config['trading']['risk_per_trade'],
@@ -69,9 +62,9 @@ async def main():
             max_positions=config['trading']['max_positions']
         )
         
-        logger.info("Gestionnaire de risque initialisé")
+        logger.info("Risk manager initialized")
         
-        # Initialiser l'exécuteur de trades
+        # Initialize trade executor
         trade_executor = TradeExecutor(
             binance_client=binance_client,
             risk_manager=risk_manager,
@@ -79,9 +72,9 @@ async def main():
             use_volatility_sl=config['trading']['use_volatility_sl']
         )
         
-        logger.info("Exécuteur de trades initialisé")
+        logger.info("Trade executor initialized")
         
-        # Initialiser le client Telegram
+        # Initialize Telegram client
         telegram_client = TelegramClient(
             token=config['telegram']['token'],
             signal_queue=signal_queue,
@@ -90,64 +83,71 @@ async def main():
             admin_users=config['telegram']['admin_users']
         )
         
-        logger.info("Client Telegram initialisé")
+        logger.info("Telegram client initialized")
         
-        # Initialiser le parser de signaux
+        # Initialize signal parser
         signal_parser = SignalParser()
         
-        logger.info("Parser de signaux initialisé")
+        logger.info("Signal parser initialized")
         
-        # Définir la fonction de callback pour le parsing des signaux
+        # Define callback function for signal parsing
         def parse_signal_callback(message_text):
             return signal_parser.parse_signal(message_text)
         
-        # Initialiser le processeur de signaux
+        # Initialize signal processor
         signal_processor = SignalProcessor(
             signal_queue=signal_queue,
             parser_callback=parse_signal_callback,
             telegram_client=telegram_client
         )
         
-        logger.info("Processeur de signaux initialisé")
+        logger.info("Signal processor initialized")
         
-        # Démarrer le processeur de signaux
+        # Start signal processor
         signal_processor.start()
         
-        logger.info("Processeur de signaux démarré")
+        logger.info("Signal processor started")
         
-        # Fonction de callback pour traiter les signaux parsés
+        # Callback function to process parsed signals
         async def process_signal(signal):
             try:
-                # Exécuter le signal
+                # Execute signal
                 result = await trade_executor.execute_signal(signal)
                 
-                # Envoyer le résultat au client Telegram
+                # Send result to Telegram client
                 chat_id = signal.chat_id if hasattr(signal, 'chat_id') else None
                 if chat_id and telegram_client:
                     await telegram_client.send_signal_result(chat_id, result.signal_id, result.to_dict())
                 
                 return result
             except Exception as e:
-                logger.error(f"Erreur lors du traitement du signal: {str(e)}")
+                logger.error(f"Error processing signal: {str(e)}")
                 return None
         
-        # Démarrer le client Telegram
-        logger.info("Démarrage du client Telegram...")
+        # Start Telegram client
+        logger.info("Starting Telegram client...")
         telegram_task = telegram_client.start_async()
         
-        # Attendre que le client Telegram soit prêt
+        # Wait for Telegram client to be ready
         await asyncio.sleep(2)
         
-        logger.info("Bot démarré et en attente de signaux")
+        logger.info("Bot started and waiting for signals")
         
-        # Attendre que le client Telegram s'arrête
+        # Wait for Telegram client to stop
         await telegram_task
         
     except Exception as e:
-        logger.error(f"Erreur dans la fonction principale: {str(e)}")
+        logger.error(f"Error in main function: {str(e)}")
+        logger.error("Stack trace:", exc_info=True)
         raise
 
 
 if __name__ == "__main__":
-    # Exécuter la fonction principale
-    asyncio.run(main())
+    try:
+        # Run main function
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("Bot stopped by user")
+    except Exception as e:
+        logger.critical(f"Fatal error: {str(e)}")
+        logger.critical("Stack trace:", exc_info=True)

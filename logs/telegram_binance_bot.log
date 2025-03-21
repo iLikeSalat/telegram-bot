@@ -1,0 +1,10 @@
+2025-03-22 00:03:17,699 - root - ERROR - debug_logger.py:42 - Uncaught exception
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Downloads\telegram-bot-complete\telegram-bot\main.py", line 21, in <module>
+    from src.signal_parser import SignalParser
+  File "C:\Users\Thomas\Downloads\telegram-bot-complete\telegram-bot\src\__init__.py", line 10, in <module>
+    from src.binance_client import BinanceClient, OrderExecutor, MarketData, OrderSide, OrderType, PositionSide
+  File "C:\Users\Thomas\Downloads\telegram-bot-complete\telegram-bot\src\binance_client.py", line 138
+    logger.info(f"Attempting to execute order on Binance: {symbol} {side} {order_type}")
+          ^
+SyntaxError: invalid syntax

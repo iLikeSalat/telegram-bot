@@ -1,9 +1,9 @@
 """
-Module d'intégration avec l'API Binance.
+Module for Binance API integration.
 
-Ce module contient les classes et fonctions nécessaires pour interagir
-avec l'API Binance pour le trading de crypto-monnaies.
-Version améliorée avec types d'ordres avancés et gestion des erreurs.
+This module contains classes and functions needed to interact
+with the Binance API for cryptocurrency trading.
+Enhanced version with advanced order types and error handling.
 """
 
 import logging
@@ -21,7 +21,7 @@ from binance.client import Client
 from binance import AsyncClient
 from binance.exceptions import BinanceAPIException, BinanceRequestException
 
-# Configuration du logging
+# Logging configuration
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO,
@@ -29,7 +29,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Ajouter un handler pour afficher les logs dans la console
+# Add handler to display logs in console
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -38,14 +38,14 @@ logger.addHandler(console_handler)
 
 
 class OrderSide(str, Enum):
-    """Côté de l'ordre (achat ou vente)."""
+    """Order side (buy or sell)."""
     
     BUY = "BUY"
     SELL = "SELL"
 
 
 class OrderType(str, Enum):
-    """Type d'ordre."""
+    """Order type."""
     
     LIMIT = "LIMIT"
     MARKET = "MARKET"
@@ -55,7 +55,7 @@ class OrderType(str, Enum):
 
 
 class PositionSide(str, Enum):
-    """Côté de la position."""
+    """Position side."""
     
     BOTH = "BOTH"
     LONG = "LONG"
@@ -64,7 +64,7 @@ class PositionSide(str, Enum):
 
 @dataclass
 class MarketData:
-    """Données de marché pour un symbole."""
+    """Market data for a symbol."""
     
     symbol: str
     price: float
@@ -80,54 +80,54 @@ class MarketData:
 
 class OrderExecutor:
     """
-    Classe pour exécuter des ordres sur Binance.
+    Class for executing orders on Binance.
     
-    Cette classe fournit des méthodes pour exécuter différents types d'ordres
-    sur Binance, en gérant les détails spécifiques à chaque type d'ordre.
+    This class provides methods for executing different types of orders
+    on Binance, handling the specific details for each order type.
     """
     
     def __init__(self, client: Client):
         """
-        Initialise l'exécuteur d'ordres.
+        Initialize the order executor.
         
         Args:
-            client: Le client Binance à utiliser pour exécuter les ordres.
+            client: The Binance client to use for executing orders.
         """
         self.client = client
         self.symbol_info_cache = {}
-        self.cache_expiry = 3600  # 1 heure
+        self.cache_expiry = 3600  # 1 hour
         self.cache_timestamp = 0
     
     async def execute_order(self, symbol: str, side: OrderSide, order_type: OrderType,
                            quantity: float, price: Optional[float] = None,
                            stop_price: Optional[float] = None, reduce_only: bool = False) -> Dict[str, Any]:
         """
-        Exécute un ordre sur Binance.
+        Execute an order on Binance.
         
         Args:
-            symbol: Le symbole sur lequel exécuter l'ordre.
-            side: Le côté de l'ordre (achat ou vente).
-            order_type: Le type d'ordre.
-            quantity: La quantité à acheter ou vendre.
-            price: Le prix de l'ordre (pour les ordres limites).
-            stop_price: Le prix de déclenchement (pour les ordres stop).
-            reduce_only: Si True, l'ordre ne peut que réduire une position existante.
+            symbol: The symbol to execute the order on.
+            side: The order side (buy or sell).
+            order_type: The order type.
+            quantity: The quantity to buy or sell.
+            price: The order price (for limit orders).
+            stop_price: The trigger price (for stop orders).
+            reduce_only: If True, the order can only reduce an existing position.
             
         Returns:
-            Un dictionnaire contenant les informations de l'ordre exécuté.
+            A dictionary containing the executed order information.
         """
         logger.info(f"Executing order: {symbol} {side} {order_type}")
         logger.info(f"Parameters: quantity={quantity}, price={price}, stop_price={stop_price}, reduce_only={reduce_only}")
         
         try:
-            # Arrondir la quantité et le prix selon les règles du symbole
+            # Round quantity and price according to symbol rules
             quantity = self._round_quantity(symbol, quantity)
             if price is not None:
                 price = self._round_price(symbol, price)
             if stop_price is not None:
                 stop_price = self._round_price(symbol, stop_price)
             
-            # Préparer les paramètres de l'ordre
+            # Prepare order parameters
             params = {
                 'symbol': symbol,
                 'side': side,
@@ -136,16 +136,16 @@ class OrderExecutor:
                 'reduceOnly': reduce_only
             }
             
-            # Ajouter les paramètres spécifiques au type d'ordre
+            # Add parameters specific to order type
             if order_type == OrderType.LIMIT:
                 params['timeInForce'] = 'GTC'
                 params['price'] = price
             elif order_type in [OrderType.STOP_MARKET, OrderType.TAKE_PROFIT_MARKET]:
                 params['stopPrice'] = stop_price
             elif order_type == OrderType.TRAILING_STOP_MARKET:
-                params['callbackRate'] = price  # Dans ce cas, price est le taux de callback
+                params['callbackRate'] = price  # In this case, price is the callback rate
             
-            # Exécuter l'ordre
+            # Execute the order
             logger.info(f"Sending order to Binance: {params}")
             response = await self.client.futures_create_order(**params)
             logger.info(f"Order executed successfully: {response}")
@@ -164,23 +164,23 @@ class OrderExecutor:
     
     def _round_quantity(self, symbol: str, quantity: float) -> float:
         """
-        Arrondit la quantité selon les règles du symbole.
+        Round quantity according to symbol rules.
         
         Args:
-            symbol: Le symbole pour lequel arrondir la quantité.
-            quantity: La quantité à arrondir.
+            symbol: The symbol to round the quantity for.
+            quantity: The quantity to round.
             
         Returns:
-            La quantité arrondie.
+            The rounded quantity.
         """
         try:
-            # Récupérer les informations du symbole
+            # Get symbol information
             symbol_info = self._get_symbol_info(symbol)
             
-            # Récupérer la précision de la quantité
+            # Get quantity precision
             quantity_precision = symbol_info.get('quantityPrecision', 8)
             
-            # Arrondir la quantité
+            # Round quantity
             rounded_quantity = round(quantity, quantity_precision)
             
             return rounded_quantity
@@ -191,23 +191,23 @@ class OrderExecutor:
     
     def _round_price(self, symbol: str, price: float) -> float:
         """
-        Arrondit le prix selon les règles du symbole.
+        Round price according to symbol rules.
         
         Args:
-            symbol: Le symbole pour lequel arrondir le prix.
-            price: Le prix à arrondir.
+            symbol: The symbol to round the price for.
+            price: The price to round.
             
         Returns:
-            Le prix arrondi.
+            The rounded price.
         """
         try:
-            # Récupérer les informations du symbole
+            # Get symbol information
             symbol_info = self._get_symbol_info(symbol)
             
-            # Récupérer la précision du prix
+            # Get price precision
             price_precision = symbol_info.get('pricePrecision', 8)
             
-            # Arrondir le prix
+            # Round price
             rounded_price = round(price, price_precision)
             
             return rounded_price
@@ -218,89 +218,89 @@ class OrderExecutor:
     
     def _get_symbol_info(self, symbol: str) -> Dict[str, Any]:
         """
-        Récupère les informations d'un symbole.
+        Get symbol information.
         
         Args:
-            symbol: Le symbole pour lequel récupérer les informations.
+            symbol: The symbol to get information for.
             
         Returns:
-            Un dictionnaire contenant les informations du symbole.
+            A dictionary containing symbol information.
         """
-        # Vérifier si les informations sont dans le cache et si elles sont encore valides
+        # Check if information is in cache and still valid
         now = time.time()
         if now - self.cache_timestamp > self.cache_expiry:
-            # Récupérer les informations de tous les symboles
+            # Get information for all symbols
             exchange_info = self.client.futures_exchange_info()
             
-            # Mettre à jour le cache
+            # Update cache
             self.symbol_info_cache = {}
             for symbol_info in exchange_info['symbols']:
                 self.symbol_info_cache[symbol_info['symbol']] = symbol_info
             
             self.cache_timestamp = now
         
-        # Récupérer les informations du symbole depuis le cache
+        # Get symbol information from cache
         if symbol in self.symbol_info_cache:
             return self.symbol_info_cache[symbol]
         
-        # Si le symbole n'est pas dans le cache, récupérer les informations directement
+        # If symbol is not in cache, get information directly
         exchange_info = self.client.futures_exchange_info()
         for symbol_info in exchange_info['symbols']:
             if symbol_info['symbol'] == symbol:
                 return symbol_info
         
-        # Si le symbole n'est pas trouvé, retourner un dictionnaire vide
+        # If symbol is not found, return empty dictionary
         return {}
 
 
 class BinanceClient:
     """
-    Client pour interagir avec l'API Binance.
+    Client for interacting with the Binance API.
     
-    Cette classe fournit des méthodes pour interagir avec l'API Binance,
-    en gérant l'authentification, les requêtes et les réponses.
+    This class provides methods for interacting with the Binance API,
+    handling authentication, requests, and responses.
     """
     
     def __init__(self, api_key: str, api_secret: str, testnet: bool = True, tld: str = 'com'):
         """
-        Initialise le client Binance.
+        Initialize the Binance client.
         
         Args:
-            api_key: La clé API Binance.
-            api_secret: La clé secrète API Binance.
-            testnet: Si True, utilise le testnet de Binance.
-            tld: Le TLD à utiliser pour l'API Binance.
+            api_key: The Binance API key.
+            api_secret: The Binance API secret.
+            testnet: If True, use the Binance testnet.
+            tld: The TLD to use for the Binance API.
         """
         self.api_key = api_key
         self.api_secret = api_secret
         self.testnet = testnet
         self.tld = tld
         
-        # Initialiser le client Binance
+        # Initialize Binance client
         self.client = Client(api_key, api_secret, testnet=testnet, tld=tld)
         
-        # Initialiser l'exécuteur d'ordres
+        # Initialize order executor
         self.order_executor = OrderExecutor(self.client)
         
-        # Mettre à jour les informations d'échange
+        # Update exchange information
         self._update_exchange_info()
         
-        logger.info(f"Client Binance initialisé (testnet: {testnet})")
+        logger.info(f"Binance client initialized (testnet: {testnet})")
     
     def _update_exchange_info(self):
-        """Met à jour les informations d'échange."""
+        """Update exchange information."""
         try:
             self.exchange_info = self.client.futures_exchange_info()
-            logger.info("Informations d'échange mises à jour")
+            logger.info("Exchange information updated")
         except Exception as e:
-            logger.error(f"Erreur lors de la mise à jour des informations d'échange: {str(e)}")
+            logger.error(f"Error updating exchange information: {str(e)}")
     
     async def get_account_info(self) -> Dict[str, Any]:
         """
-        Récupère les informations du compte.
+        Get account information.
         
         Returns:
-            Un dictionnaire contenant les informations du compte.
+            A dictionary containing account information.
         """
         try:
             logger.info("Retrieving account information")
@@ -313,13 +313,13 @@ class BinanceClient:
     
     async def get_symbol_price(self, symbol: str) -> float:
         """
-        Récupère le prix actuel d'un symbole.
+        Get the current price of a symbol.
         
         Args:
-            symbol: Le symbole pour lequel récupérer le prix.
+            symbol: The symbol to get the price for.
             
         Returns:
-            Le prix actuel du symbole.
+            The current price of the symbol.
         """
         try:
             logger.info(f"Retrieving price for {symbol}")
@@ -333,24 +333,24 @@ class BinanceClient:
     
     async def get_market_data(self, symbol: str) -> MarketData:
         """
-        Récupère les données de marché pour un symbole.
+        Get market data for a symbol.
         
         Args:
-            symbol: Le symbole pour lequel récupérer les données.
+            symbol: The symbol to get data for.
             
         Returns:
-            Un objet MarketData contenant les données de marché.
+            A MarketData object containing market data.
         """
         try:
             logger.info(f"Retrieving market data for {symbol}")
             
-            # Récupérer le ticker 24h
+            # Get 24h ticker
             ticker_24h = self.client.futures_ticker(symbol=symbol)
             
-            # Récupérer le carnet d'ordres
+            # Get order book
             order_book = self.client.futures_order_book(symbol=symbol)
             
-            # Créer l'objet MarketData
+            # Create MarketData object
             market_data = MarketData(
                 symbol=symbol,
                 price=float(ticker_24h['lastPrice']),
@@ -369,7 +369,7 @@ class BinanceClient:
         
         except Exception as e:
             logger.error(f"Error retrieving market data for {symbol}: {str(e)}")
-            # En cas d'erreur, retourner des données minimales
+            # In case of error, return minimal data
             return MarketData(
                 symbol=symbol,
                 price=0.0,
@@ -378,15 +378,15 @@ class BinanceClient:
     
     async def get_klines(self, symbol: str, interval: str, limit: int) -> List[List[Any]]:
         """
-        Récupère les klines (chandeliers) pour un symbole.
+        Get klines (candles) for a symbol.
         
         Args:
-            symbol: Le symbole pour lequel récupérer les klines.
-            interval: L'intervalle des klines (1m, 5m, 15m, 1h, 4h, 1d, etc.).
-            limit: Le nombre de klines à récupérer.
+            symbol: The symbol to get klines for.
+            interval: The kline interval (1m, 5m, 15m, 1h, 4h, 1d, etc.).
+            limit: The number of klines to get.
             
         Returns:
-            Une liste de klines.
+            A list of klines.
         """
         try:
             logger.info(f"Retrieving {limit} klines for {symbol} with interval {interval}")
@@ -401,19 +401,19 @@ class BinanceClient:
                          quantity: float, price: Optional[float] = None,
                          stop_price: Optional[float] = None, reduce_only: bool = False) -> Dict[str, Any]:
         """
-        Place un ordre sur Binance.
+        Place an order on Binance.
         
         Args:
-            symbol: Le symbole sur lequel placer l'ordre.
-            side: Le côté de l'ordre (achat ou vente).
-            order_type: Le type d'ordre.
-            quantity: La quantité à acheter ou vendre.
-            price: Le prix de l'ordre (pour les ordres limites).
-            stop_price: Le prix de déclenchement (pour les ordres stop).
-            reduce_only: Si True, l'ordre ne peut que réduire une position existante.
+            symbol: The symbol to place the order on.
+            side: The order side (buy or sell).
+            order_type: The order type.
+            quantity: The quantity to buy or sell.
+            price: The order price (for limit orders).
+            stop_price: The trigger price (for stop orders).
+            reduce_only: If True, the order can only reduce an existing position.
             
         Returns:
-            Un dictionnaire contenant les informations de l'ordre placé.
+            A dictionary containing the placed order information.
         """
         logger.info(f"Attempting to execute order: {symbol} {side} {order_type}")
         logger.info(f"Parameters: quantity={quantity}, price={price}, stop_price={stop_price}, reduce_only={reduce_only}")
@@ -428,14 +428,14 @@ class BinanceClient:
     
     async def set_leverage(self, symbol: str, leverage: int) -> Dict[str, Any]:
         """
-        Définit le levier pour un symbole.
+        Set leverage for a symbol.
         
         Args:
-            symbol: Le symbole pour lequel définir le levier.
-            leverage: Le levier à définir.
+            symbol: The symbol to set leverage for.
+            leverage: The leverage to set.
             
         Returns:
-            Un dictionnaire contenant les informations de la réponse.
+            A dictionary containing the response information.
         """
         try:
             logger.info(f"Setting leverage for {symbol} to {leverage}x")
@@ -448,14 +448,14 @@ class BinanceClient:
     
     async def set_margin_type(self, symbol: str, margin_type: str) -> Dict[str, Any]:
         """
-        Définit le type de marge pour un symbole.
+        Set margin type for a symbol.
         
         Args:
-            symbol: Le symbole pour lequel définir le type de marge.
-            margin_type: Le type de marge à définir (ISOLATED ou CROSSED).
+            symbol: The symbol to set margin type for.
+            margin_type: The margin type to set (ISOLATED or CROSSED).
             
         Returns:
-            Un dictionnaire contenant les informations de la réponse.
+            A dictionary containing the response information.
         """
         try:
             logger.info(f"Setting margin type for {symbol} to {margin_type}")
@@ -463,7 +463,7 @@ class BinanceClient:
             logger.info(f"Margin type set successfully for {symbol}: {margin_type}")
             return response
         except BinanceAPIException as e:
-            # Ignorer l'erreur si le type de marge est déjà défini
+            # Ignore error if margin type is already set
             if e.code == -4046:  # "No need to change margin type."
                 logger.info(f"Margin type already set to {margin_type} for {symbol}")
                 return {"msg": "Margin type already set", "code": 0}
@@ -476,17 +476,17 @@ class BinanceClient:
     
     async def get_open_positions(self) -> List[Dict[str, Any]]:
         """
-        Récupère les positions ouvertes.
+        Get open positions.
         
         Returns:
-            Une liste de positions ouvertes.
+            A list of open positions.
         """
         try:
             logger.info("Retrieving open positions")
             account_info = await self.get_account_info()
             positions = account_info['positions']
             
-            # Filtrer les positions avec une quantité non nulle
+            # Filter positions with non-zero quantity
             open_positions = [p for p in positions if float(p['positionAmt']) != 0]
             
             logger.info(f"Retrieved {len(open_positions)} open positions")
@@ -497,13 +497,13 @@ class BinanceClient:
     
     async def get_open_orders(self, symbol: Optional[str] = None) -> List[Dict[str, Any]]:
         """
-        Récupère les ordres ouverts.
+        Get open orders.
         
         Args:
-            symbol: Le symbole pour lequel récupérer les ordres (optionnel).
+            symbol: The symbol to get orders for (optional).
             
         Returns:
-            Une liste d'ordres ouverts.
+            A list of open orders.
         """
         try:
             logger.info(f"Retrieving open orders for {symbol if symbol else 'all symbols'}")
@@ -521,14 +521,14 @@ class BinanceClient:
     
     async def cancel_order(self, symbol: str, order_id: int) -> Dict[str, Any]:
         """
-        Annule un ordre.
+        Cancel an order.
         
         Args:
-            symbol: Le symbole de l'ordre à annuler.
-            order_id: L'ID de l'ordre à annuler.
+            symbol: The symbol of the order to cancel.
+            order_id: The ID of the order to cancel.
             
         Returns:
-            Un dictionnaire contenant les informations de la réponse.
+            A dictionary containing the response information.
         """
         try:
             logger.info(f"Cancelling order {order_id} for {symbol}")
@@ -541,22 +541,22 @@ class BinanceClient:
     
     async def close_position(self, symbol: str, position_side: PositionSide) -> Dict[str, Any]:
         """
-        Ferme une position.
+        Close a position.
         
         Args:
-            symbol: Le symbole de la position à fermer.
-            position_side: Le côté de la position à fermer.
+            symbol: The symbol of the position to close.
+            position_side: The side of the position to close.
             
         Returns:
-            Un dictionnaire contenant les informations de la réponse.
+            A dictionary containing the response information.
         """
         try:
             logger.info(f"Closing position for {symbol} (side: {position_side})")
             
-            # Récupérer les positions ouvertes
+            # Get open positions
             positions = await self.get_open_positions()
             
-            # Trouver la position à fermer
+            # Find position to close
             position = None
             for p in positions:
                 if p['symbol'] == symbol and p['positionSide'] == position_side:
@@ -567,11 +567,11 @@ class BinanceClient:
                 logger.warning(f"No open position found for {symbol} (side: {position_side})")
                 return {"msg": "No open position found", "code": 0}
             
-            # Déterminer le côté de l'ordre pour fermer la position
+            # Determine order side to close position
             position_amt = float(position['positionAmt'])
             side = OrderSide.SELL if position_amt > 0 else OrderSide.BUY
             
-            # Placer un ordre de marché pour fermer la position
+            # Place market order to close position
             response = await self.place_order(
                 symbol=symbol,
                 side=side,
@@ -588,7 +588,7 @@ class BinanceClient:
             raise
     
     def close(self):
-        """Ferme le client Binance."""
+        """Close the Binance client."""
         try:
             self.client.close_connection()
             logger.info("Binance client connection closed")
@@ -597,36 +597,36 @@ class BinanceClient:
 
 
 def main():
-    """Fonction principale pour tester le module."""
-    # Créer un client Binance (remplacer par vos clés API)
+    """Main function to test the module."""
+    # Create a Binance client (replace with your API keys)
     client = BinanceClient(
         api_key="YOUR_API_KEY",
         api_secret="YOUR_API_SECRET",
-        testnet=True  # Utiliser le testnet pour les tests
+        testnet=True  # Use testnet for testing
     )
     
-    # Exemple d'utilisation
+    # Example usage
     async def test():
         try:
-            # Récupérer le prix de BTC
+            # Get BTC price
             btc_price = await client.get_symbol_price("BTCUSDT")
-            print(f"Prix de BTC: {btc_price}")
+            print(f"BTC price: {btc_price}")
             
-            # Récupérer les données de marché
+            # Get market data
             market_data = await client.get_market_data("BTCUSDT")
-            print(f"Données de marché: {market_data}")
+            print(f"Market data: {market_data}")
             
-            # Récupérer les klines
+            # Get klines
             klines = await client.get_klines("BTCUSDT", "1h", 10)
             print(f"Klines: {klines[:2]}...")
             
         except Exception as e:
-            print(f"Erreur: {str(e)}")
+            print(f"Error: {str(e)}")
         finally:
-            # Fermer le client
+            # Close client
             client.close()
     
-    # Exécuter la fonction de test
+    # Run test function
     import asyncio
     asyncio.run(test())
 
