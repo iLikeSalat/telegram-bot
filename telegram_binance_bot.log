@@ -199,3 +199,340 @@ telegram.error.InvalidToken: The token `:bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZg
 2025-03-21 17:16:06,984 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/deleteWebhook "HTTP/1.1 200 OK"
 2025-03-21 17:16:06,986 - telegram.ext.Application - INFO - Application started
 2025-03-21 17:16:17,134 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getUpdates "HTTP/1.1 200 OK"
+2025-03-21 22:57:46,454 - __main__ - INFO - Configuration chargée
+2025-03-21 22:57:47,581 - src.binance_client - INFO - Informations d'échange mises à jour
+2025-03-21 22:57:47,581 - src.binance_client - INFO - Client Binance initialisé (testnet: True)
+2025-03-21 22:57:47,582 - __main__ - INFO - Client Binance initialisé
+2025-03-21 22:57:47,582 - src.risk_manager - INFO - RiskManager initialisé (risk_per_trade: 1.0%, max_total_risk: 5.0%, max_positions: 10)
+2025-03-21 22:57:47,582 - __main__ - INFO - Gestionnaire de risque initialisé
+2025-03-21 22:57:47,582 - src.trade_executor - INFO - TechnicalAnalyzer initialisé
+2025-03-21 22:57:47,582 - src.trade_executor - INFO - TradeExecutor initialisé (validate_trend: True, use_volatility_sl: True)
+2025-03-21 22:57:47,582 - __main__ - INFO - Exécuteur de trades initialisé
+2025-03-21 22:57:47,998 - __main__ - INFO - Client Telegram initialisé
+2025-03-21 22:57:47,998 - src.signal_parser - INFO - SignalParser initialisé
+2025-03-21 22:57:47,998 - __main__ - INFO - Parser de signaux initialisé
+2025-03-21 22:57:47,998 - __main__ - INFO - Processeur de signaux initialisé
+2025-03-21 22:57:47,999 - src.telegram_client - INFO - Processeur de signaux démarré
+2025-03-21 22:57:47,999 - __main__ - INFO - Processeur de signaux démarré
+2025-03-21 22:57:47,999 - __main__ - INFO - Démarrage du client Telegram...
+2025-03-21 22:57:47,999 - src.telegram_client - INFO - Démarrage asynchrone du bot Telegram...
+2025-03-21 22:57:48,174 - httpx - INFO - HTTP Request: POST https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/getMe "HTTP/1.1 404 Not Found"
+2025-03-21 22:57:48,174 - src.telegram_client - ERROR - Erreur lors de l'initialisation du bot: Not Found
+2025-03-21 22:57:50,006 - __main__ - INFO - Bot démarré et en attente de signaux
+2025-03-21 22:57:50,007 - __main__ - ERROR - Erreur dans la fonction principale: Not Found
+2025-03-21 23:09:41,269 - __main__ - INFO - Configuration chargée
+2025-03-21 23:09:43,217 - src.binance_client - INFO - Informations d'échange mises à jour
+2025-03-21 23:09:43,218 - src.binance_client - INFO - Client Binance initialisé (testnet: True)
+2025-03-21 23:09:43,218 - __main__ - INFO - Client Binance initialisé
+2025-03-21 23:09:43,218 - src.risk_manager - INFO - RiskManager initialisé (risk_per_trade: 1.0%, max_total_risk: 5.0%, max_positions: 10)
+2025-03-21 23:09:43,218 - __main__ - INFO - Gestionnaire de risque initialisé
+2025-03-21 23:09:43,218 - src.trade_executor - INFO - TechnicalAnalyzer initialisé
+2025-03-21 23:09:43,218 - src.trade_executor - INFO - TradeExecutor initialisé (validate_trend: True, use_volatility_sl: True)
+2025-03-21 23:09:43,218 - __main__ - INFO - Exécuteur de trades initialisé
+2025-03-21 23:09:43,631 - __main__ - INFO - Client Telegram initialisé
+2025-03-21 23:09:43,631 - src.signal_parser - INFO - SignalParser initialisé
+2025-03-21 23:09:43,631 - __main__ - INFO - Parser de signaux initialisé
+2025-03-21 23:09:43,632 - __main__ - INFO - Processeur de signaux initialisé
+2025-03-21 23:09:43,632 - src.telegram_client - INFO - Processeur de signaux démarré
+2025-03-21 23:09:43,632 - __main__ - INFO - Processeur de signaux démarré
+2025-03-21 23:09:43,632 - __main__ - INFO - Démarrage du client Telegram...
+2025-03-21 23:09:43,632 - src.telegram_client - INFO - Démarrage asynchrone du bot Telegram...
+2025-03-21 23:09:43,827 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:09:43,828 - src.telegram_client - INFO - Bot initialisé: @binanceManus_bot
+2025-03-21 23:09:43,874 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:09:43,875 - telegram.ext.Application - INFO - Application started
+2025-03-21 23:09:43,916 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-21 23:09:45,639 - __main__ - INFO - Bot démarré et en attente de signaux
+2025-03-21 23:11:47,964 - __main__ - INFO - Configuration chargée
+2025-03-21 23:11:48,711 - src.binance_client - INFO - Informations d'échange mises à jour
+2025-03-21 23:11:48,711 - src.binance_client - INFO - Client Binance initialisé (testnet: False)
+2025-03-21 23:11:48,712 - __main__ - INFO - Client Binance initialisé
+2025-03-21 23:11:48,716 - src.risk_manager - INFO - RiskManager initialisé (risk_per_trade: 1.0%, max_total_risk: 5.0%, max_positions: 10)
+2025-03-21 23:11:48,718 - __main__ - INFO - Gestionnaire de risque initialisé
+2025-03-21 23:11:48,718 - src.trade_executor - INFO - TechnicalAnalyzer initialisé
+2025-03-21 23:11:48,718 - src.trade_executor - INFO - TradeExecutor initialisé (validate_trend: True, use_volatility_sl: True)
+2025-03-21 23:11:48,718 - __main__ - INFO - Exécuteur de trades initialisé
+2025-03-21 23:11:49,111 - __main__ - INFO - Client Telegram initialisé
+2025-03-21 23:11:49,111 - src.signal_parser - INFO - SignalParser initialisé
+2025-03-21 23:11:49,111 - __main__ - INFO - Parser de signaux initialisé
+2025-03-21 23:11:49,111 - __main__ - INFO - Processeur de signaux initialisé
+2025-03-21 23:11:49,111 - src.telegram_client - INFO - Processeur de signaux démarré
+2025-03-21 23:11:49,111 - __main__ - INFO - Processeur de signaux démarré
+2025-03-21 23:11:49,112 - __main__ - INFO - Démarrage du client Telegram...
+2025-03-21 23:11:49,112 - src.telegram_client - INFO - Démarrage asynchrone du bot Telegram...
+2025-03-21 23:11:49,272 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:11:49,272 - src.telegram_client - INFO - Bot initialisé: @binanceManus_bot
+2025-03-21 23:11:49,308 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:11:49,309 - telegram.ext.Application - INFO - Application started
+2025-03-21 23:11:49,343 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-21 23:11:49,514 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getUpdates "HTTP/1.1 200 OK"
+2025-03-21 23:11:49,514 - src.telegram_client - INFO - Signal potentiel détecté de 6177740598/6177740598
+2025-03-21 23:11:49,539 - src.telegram_client - INFO - Traitement du signal de 6177740598: \U0001f7e2 BTC LONG 
+
+\U0001f3afEntry ...
+2025-03-21 23:11:49,541 - src.telegram_client - INFO - Signal parsé avec succès: TradingSignal(symbol='BTC', direction='LONG', entry_min=83500.0, entry_max=84050.0, take_profit_levels=[90350.0, 91220.0, 94000.0, 97550.0, 100000.0, 104000.0], stop_loss=83000.0, raw_text='\U0001f7e2 BTC LONG \n\n\U0001f3afEntry price: 83500-84050\n\nTP:\n\n90350\n91220\n94000\n97550\n100000\n104000\n\n\U0001f6d1 SL 83000\n\nEvery transaction\xa0carries\xa0a\xa0risk', format=<SignalFormat.STANDARD: 1>, confidence=1.0)
+2025-03-21 23:11:49,577 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:11:49,744 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:11:49,744 - src.telegram_client - INFO - Notification envoyée à 6177740598
+2025-03-21 23:11:51,126 - __main__ - INFO - Bot démarré et en attente de signaux
+2025-03-21 23:16:17,125 - __main__ - INFO - Configuration chargée
+2025-03-21 23:16:17,879 - src.binance_client - INFO - Informations d'échange mises à jour
+2025-03-21 23:16:17,879 - src.binance_client - INFO - Client Binance initialisé (testnet: False)
+2025-03-21 23:16:17,879 - __main__ - INFO - Client Binance initialisé
+2025-03-21 23:16:17,879 - src.risk_manager - INFO - RiskManager initialisé (risk_per_trade: 1.0%, max_total_risk: 5.0%, max_positions: 10)
+2025-03-21 23:16:17,879 - __main__ - INFO - Gestionnaire de risque initialisé
+2025-03-21 23:16:17,879 - src.trade_executor - INFO - TechnicalAnalyzer initialisé
+2025-03-21 23:16:17,879 - src.trade_executor - INFO - TradeExecutor initialisé (validate_trend: True, use_volatility_sl: True)
+2025-03-21 23:16:17,880 - __main__ - INFO - Exécuteur de trades initialisé
+2025-03-21 23:16:18,295 - __main__ - INFO - Client Telegram initialisé
+2025-03-21 23:16:18,296 - src.signal_parser - INFO - SignalParser initialisé
+2025-03-21 23:16:18,296 - __main__ - INFO - Parser de signaux initialisé
+2025-03-21 23:16:18,296 - __main__ - INFO - Processeur de signaux initialisé
+2025-03-21 23:16:18,296 - src.telegram_client - INFO - Processeur de signaux démarré
+2025-03-21 23:16:18,296 - __main__ - INFO - Processeur de signaux démarré
+2025-03-21 23:16:18,296 - __main__ - INFO - Démarrage du client Telegram...
+2025-03-21 23:16:18,296 - src.telegram_client - INFO - Démarrage asynchrone du bot Telegram...
+2025-03-21 23:16:18,473 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:16:18,473 - src.telegram_client - INFO - Bot initialisé: @binanceManus_bot
+2025-03-21 23:16:18,512 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:16:18,513 - telegram.ext.Application - INFO - Application started
+2025-03-21 23:16:18,563 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-21 23:16:18,722 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getUpdates "HTTP/1.1 200 OK"
+2025-03-21 23:16:18,785 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/answerCallbackQuery "HTTP/1.1 400 Bad Request"
+2025-03-21 23:16:18,785 - src.telegram_client - ERROR - L'erreur Query is too old and response timeout expired or query id is invalid est survenue
+Traceback (most recent call last):
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_application.py", line 1298, in process_update
+    await coroutine
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_handlers\basehandler.py", line 158, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thomas\Downloads\telegram-bot-complete\telegram-bot\src\telegram_client.py", line 263, in handle_callback
+    await query.answer()  # Répondre au callback pour éviter le spinner
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_callbackquery.py", line 186, in answer
+    return await self.get_bot().answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_extbot.py", line 948, in answer_callback_query
+    return await super().answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 4182, in answer_callback_query
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 691, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_extbot.py", line 362, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 720, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\request\_baserequest.py", line 353, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Query is too old and response timeout expired or query id is invalid
+2025-03-21 23:16:18,887 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:16:18,936 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/answerCallbackQuery "HTTP/1.1 400 Bad Request"
+2025-03-21 23:16:18,936 - src.telegram_client - ERROR - L'erreur Query is too old and response timeout expired or query id is invalid est survenue
+Traceback (most recent call last):
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_application.py", line 1298, in process_update
+    await coroutine
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_handlers\basehandler.py", line 158, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thomas\Downloads\telegram-bot-complete\telegram-bot\src\telegram_client.py", line 263, in handle_callback
+    await query.answer()  # Répondre au callback pour éviter le spinner
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_callbackquery.py", line 186, in answer
+    return await self.get_bot().answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_extbot.py", line 948, in answer_callback_query
+    return await super().answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 4182, in answer_callback_query
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 691, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_extbot.py", line 362, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 720, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\request\_baserequest.py", line 353, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Query is too old and response timeout expired or query id is invalid
+2025-03-21 23:16:19,012 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:16:19,063 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-21 23:16:19,064 - src.telegram_client - INFO - Signal potentiel détecté de 6177740598/6177740598
+2025-03-21 23:16:19,138 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:16:19,173 - src.telegram_client - INFO - Traitement du signal de 6177740598: \U0001f7e2 BTC LONG 
+
+\U0001f3afEntry ...
+2025-03-21 23:16:19,174 - src.telegram_client - INFO - Signal parsé avec succès: TradingSignal(symbol='BTC', direction='LONG', entry_min=83500.0, entry_max=84050.0, take_profit_levels=[90350.0, 91220.0, 94000.0, 97550.0, 100000.0, 104000.0], stop_loss=83000.0, raw_text='\U0001f7e2 BTC LONG \n\n\U0001f3afEntry price: 83500-84050\n\nTP:\n\n90350\n91220\n94000\n97550\n100000\n104000\n\n\U0001f6d1 SL 83000\n\nEvery transaction\xa0carries\xa0a\xa0risk', format=<SignalFormat.STANDARD: 1>, confidence=1.0)
+2025-03-21 23:16:19,262 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:16:19,262 - src.telegram_client - INFO - Notification envoyée à 6177740598
+2025-03-21 23:16:20,306 - __main__ - INFO - Bot démarré et en attente de signaux
+2025-03-21 23:22:36,978 - __main__ - INFO - Configuration chargée
+2025-03-21 23:22:37,695 - src.binance_client - INFO - Informations d'échange mises à jour
+2025-03-21 23:22:37,695 - src.binance_client - INFO - Client Binance initialisé (testnet: False)
+2025-03-21 23:22:37,695 - __main__ - INFO - Client Binance initialisé
+2025-03-21 23:22:37,696 - src.risk_manager - INFO - RiskManager initialisé (risk_per_trade: 1.0%, max_total_risk: 5.0%, max_positions: 10)
+2025-03-21 23:22:37,696 - __main__ - INFO - Gestionnaire de risque initialisé
+2025-03-21 23:22:37,696 - src.trade_executor - INFO - TechnicalAnalyzer initialisé
+2025-03-21 23:22:37,696 - src.trade_executor - INFO - TradeExecutor initialisé (validate_trend: True, use_volatility_sl: True)
+2025-03-21 23:22:37,696 - __main__ - INFO - Exécuteur de trades initialisé
+2025-03-21 23:22:38,101 - __main__ - INFO - Client Telegram initialisé
+2025-03-21 23:22:38,102 - src.signal_parser - INFO - SignalParser initialisé
+2025-03-21 23:22:38,102 - __main__ - INFO - Parser de signaux initialisé
+2025-03-21 23:22:38,102 - __main__ - INFO - Processeur de signaux initialisé
+2025-03-21 23:22:38,102 - src.telegram_client - INFO - Processeur de signaux démarré
+2025-03-21 23:22:38,102 - __main__ - INFO - Processeur de signaux démarré
+2025-03-21 23:22:38,102 - __main__ - INFO - Démarrage du client Telegram...
+2025-03-21 23:22:38,102 - src.telegram_client - INFO - Démarrage asynchrone du bot Telegram...
+2025-03-21 23:22:38,291 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:22:38,292 - src.telegram_client - INFO - Bot initialisé: @binanceManus_bot
+2025-03-21 23:22:38,334 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:22:38,334 - telegram.ext.Application - INFO - Application started
+2025-03-21 23:22:38,370 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-21 23:22:40,113 - __main__ - INFO - Bot démarré et en attente de signaux
+2025-03-21 23:23:02,635 - __main__ - INFO - Configuration chargée
+2025-03-21 23:23:03,307 - src.binance_client - INFO - Informations d'échange mises à jour
+2025-03-21 23:23:03,307 - src.binance_client - INFO - Client Binance initialisé (testnet: False)
+2025-03-21 23:23:03,308 - __main__ - INFO - Client Binance initialisé
+2025-03-21 23:23:03,308 - src.risk_manager - INFO - RiskManager initialisé (risk_per_trade: 1.0%, max_total_risk: 5.0%, max_positions: 10)
+2025-03-21 23:23:03,308 - __main__ - INFO - Gestionnaire de risque initialisé
+2025-03-21 23:23:03,308 - src.trade_executor - INFO - TechnicalAnalyzer initialisé
+2025-03-21 23:23:03,308 - src.trade_executor - INFO - TradeExecutor initialisé (validate_trend: True, use_volatility_sl: True)
+2025-03-21 23:23:03,308 - __main__ - INFO - Exécuteur de trades initialisé
+2025-03-21 23:23:03,714 - __main__ - INFO - Client Telegram initialisé
+2025-03-21 23:23:03,715 - src.signal_parser - INFO - SignalParser initialisé
+2025-03-21 23:23:03,715 - __main__ - INFO - Parser de signaux initialisé
+2025-03-21 23:23:03,715 - __main__ - INFO - Processeur de signaux initialisé
+2025-03-21 23:23:03,715 - src.telegram_client - INFO - Processeur de signaux démarré
+2025-03-21 23:23:03,715 - __main__ - INFO - Processeur de signaux démarré
+2025-03-21 23:23:03,715 - __main__ - INFO - Démarrage du client Telegram...
+2025-03-21 23:23:03,715 - src.telegram_client - INFO - Démarrage asynchrone du bot Telegram...
+2025-03-21 23:23:03,869 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:23:03,869 - src.telegram_client - INFO - Bot initialisé: @binanceManus_bot
+2025-03-21 23:23:03,903 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getMe "HTTP/1.1 200 OK"
+2025-03-21 23:23:03,903 - telegram.ext.Application - INFO - Application started
+2025-03-21 23:23:03,939 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-21 23:23:04,083 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getUpdates "HTTP/1.1 200 OK"
+2025-03-21 23:23:04,173 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/answerCallbackQuery "HTTP/1.1 400 Bad Request"
+2025-03-21 23:23:04,173 - src.telegram_client - ERROR - L'erreur Query is too old and response timeout expired or query id is invalid est survenue
+Traceback (most recent call last):
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_application.py", line 1298, in process_update
+    await coroutine
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_handlers\basehandler.py", line 158, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thomas\Downloads\telegram-bot-complete\telegram-bot\src\telegram_client.py", line 263, in handle_callback
+    await query.answer()  # Répondre au callback pour éviter le spinner
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_callbackquery.py", line 186, in answer
+    return await self.get_bot().answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_extbot.py", line 948, in answer_callback_query
+    return await super().answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 4182, in answer_callback_query
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 691, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\ext\_extbot.py", line 362, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\_bot.py", line 720, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\Thomas\AppData\Local\Programs\Python\Python313\Lib\site-packages\telegram\request\_baserequest.py", line 353, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Query is too old and response timeout expired or query id is invalid
+2025-03-21 23:23:04,259 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:23:04,260 - src.telegram_client - INFO - Signal potentiel détecté de 6177740598/6177740598
+2025-03-21 23:23:04,322 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:23:04,364 - src.telegram_client - INFO - Traitement du signal de 6177740598: \U0001f7e2 BTC LONG 
+
+\U0001f3afEntry ...
+2025-03-21 23:23:04,365 - src.telegram_client - INFO - Signal parsé avec succès: TradingSignal(symbol='BTC', direction='LONG', entry_min=83500.0, entry_max=84050.0, take_profit_levels=[90350.0, 91220.0, 94000.0, 97550.0, 100000.0, 104000.0], stop_loss=83000.0, raw_text='\U0001f7e2 BTC LONG \n\n\U0001f3afEntry price: 83500-84050\n\nTP:\n\n90350\n91220\n94000\n97550\n100000\n104000\n\n\U0001f6d1 SL 83000\n\nEvery transaction\xa0carries\xa0a\xa0risk', format=<SignalFormat.STANDARD: 1>, confidence=1.0)
+2025-03-21 23:23:04,437 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/sendMessage "HTTP/1.1 200 OK"
+2025-03-21 23:23:04,438 - src.telegram_client - INFO - Notification envoyée à 6177740598
+2025-03-21 23:23:05,552 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/getUpdates "HTTP/1.1 200 OK"
+2025-03-21 23:23:05,609 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-21 23:23:05,728 - __main__ - INFO - Bot démarré et en attente de signaux

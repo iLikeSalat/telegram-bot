@@ -1,0 +1,21 @@
+{
+  "telegram": {
+    "token": "7650325360:AAFq3w3al4rK9jPtIQy7a1wZgix2-df6VXQ",
+    "allowed_chats": [],
+    "allowed_users": [],
+    "admin_users": []
+  },
+  "binance": {
+    "api_key": "UVpAHbT7UzM1T1TvTgrev1yHMXX18wUCL9CpwvMGTjDKFlRnxoiXvouToT39BMYp",
+    "api_secret": "mwM6ceAv7c7ixzPXlC6xXIUhbLWZHHazWoTAq6LsBLyeyfFxjZ3TQDV01stIf4i5",
+    "testnet": false
+  },
+  "trading": {
+    "risk_per_trade": 1.0,
+    "max_total_risk": 5.0,
+    "max_positions": 10,
+    "validate_trend": true,
+    "use_volatility_sl": true
+  },
+  "debug": true
+}
